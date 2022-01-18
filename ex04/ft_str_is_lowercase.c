@@ -33,7 +33,7 @@ int	ft_str_is_alpha(char *str)
 			alpha = false;
 			break ;
 		}
-		index++;
+		ind++;
 	}
 	return (alpha);
 }

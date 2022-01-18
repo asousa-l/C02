@@ -6,7 +6,7 @@
 /*   By: asousa-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:00:59 by asousa-l          #+#    #+#             */
-/*   Updated: 2022/01/18 15:10:17 by asousa-l         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:31:08 by asousa-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	ft_strput_non_printable(char *str)
 			ft_putchar("0123456789abcdef"[a / 16]);
 			ft_putchar("0123456789abcdef"[a % 16]);
 		}
-		index++;
+		ind;
 	}
 }
