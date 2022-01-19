@@ -34,7 +34,7 @@ void	ft_strput_non_printable(char *str)
 		a = str[ind];
 		if (a == '\0')
 			break ;
-		if (is_char_printable(a))
+		else if (is_char_printable(a))
 			ft_putchaar(a);
 		else
 		{
@@ -42,6 +42,6 @@ void	ft_strput_non_printable(char *str)
 			ft_putchar("0123456789abcdef"[a / 16]);
 			ft_putchar("0123456789abcdef"[a % 16]);
 		}
-		ind;
+		ind++;
 	}
 }

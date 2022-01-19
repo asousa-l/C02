@@ -82,7 +82,7 @@ char	*ft_capitalize(char *str)
 			in = false;
 			skip = false;
 		}
-		index++;
+		ind++;
 	}
 	return (str);
 }

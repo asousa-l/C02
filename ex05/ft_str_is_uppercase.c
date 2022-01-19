@@ -33,7 +33,7 @@ int	ft_str_is_uppercase(char *str)
 			alpha = false;
 			break ;
 		}
-		index++;
+		ind++;
 	}
 	return (alpha);
 }
