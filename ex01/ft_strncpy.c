@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	ind;
+	unsigned int	ind;
 
 	ind = 0;
-	while (str[ind] != '\0' && ind < n)
+	while (src[ind] != '\0' && ind < n)
 	{
-		dest[ind] = str[ind];
+		dest[ind] = src[ind];
 		ind++;
 	}
 	while (ind < n)

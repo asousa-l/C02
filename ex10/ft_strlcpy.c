@@ -11,14 +11,18 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <string.h>
+#include <stdio.h>
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	unsigned int	count;
+	unsigned int	c;
 	unsigned int	ind;
 
-	while (src[count] != '\0')
-		count++;
+	c = 0;
+	ind = 0;
+	while (src[c] != '\0')
+		c++;
 	if (size != 0)
 	{
 		while (src[ind] != '\0' && ind < (size - 1))
@@ -28,5 +32,5 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		}
 		dest[ind] = '\0';
 	}
-	return (count);
+	return (c);
 }

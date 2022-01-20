@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
-void	ft_str_is_numeric(char *str)
+int	ft_str_is_numeric(char *str)
 {
 	int		ind;
 	bool	nbr;
@@ -24,7 +26,7 @@ void	ft_str_is_numeric(char *str)
 	while (true)
 	{
 		a = str[ind];
-		if (curr == '\0')
+		if (a == '\0')
 		{
 			break ;
 		}
@@ -35,4 +37,5 @@ void	ft_str_is_numeric(char *str)
 		}
 		ind++;
 	}
+	return (nbr);
 }

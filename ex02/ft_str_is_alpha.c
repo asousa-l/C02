@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 int	ft_str_is_alpha(char *str)
@@ -24,7 +26,7 @@ int	ft_str_is_alpha(char *str)
 	while (true)
 	{
 		a = str[ind];
-		if (curr == '\0')
+		if (a == '\0')
 		{
 			break ;
 		}
@@ -33,7 +35,7 @@ int	ft_str_is_alpha(char *str)
 			alpha = false;
 			break ;
 		}
-		index++;
+		ind++;
 	}
 	return (alpha);
 }

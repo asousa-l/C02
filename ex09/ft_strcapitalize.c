@@ -12,10 +12,11 @@
 
 #include <unistd.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 void	transform(char *c, bool up)
 {
-	if (!to_upper)
+	if (!up)
 	{
 		if (*c >= 'A' && *c <= 'Z')
 		{
@@ -61,9 +62,9 @@ void	decision(char *a, bool *in, bool *skip)
 		transform(a, f);
 }
 
-char	*ft_capitalize(char *str)
+char	*ft_strcapitalize(char *str)
 {
-	int		index;
+	int		ind;
 	char	*a;
 	bool	in;
 	bool	skip;

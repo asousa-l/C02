@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 
 char	*ft_strupcase(char *str)
 {
@@ -21,7 +24,7 @@ char	*ft_strupcase(char *str)
 	while (true)
 	{
 		a = str[ind];
-		if (curr == '\0')
+		if (a == '\0')
 		{
 			break ;
 		}

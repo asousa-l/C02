@@ -23,7 +23,7 @@ bool	is_char_printable(char c)
 	return (c >= ' ' && c != 127);
 }
 
-void	ft_strput_non_printable(char *str)
+void	ft_putstr_non_printable(char *str)
 {
 	int				ind;
 	unsigned char	a;
@@ -35,7 +35,7 @@ void	ft_strput_non_printable(char *str)
 		if (a == '\0')
 			break ;
 		else if (is_char_printable(a))
-			ft_putchaar(a);
+			ft_putchar(a);
 		else
 		{
 			ft_putchar('\\');
