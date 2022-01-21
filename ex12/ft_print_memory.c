@@ -65,7 +65,7 @@ void	str(unsigned char *str, unsigned int x)
 		}
 		else
 		{
-			ft_putchar(&str[a + x]);
+			ft_putchar(str[a + x]);
 			a++;
 		}
 	}

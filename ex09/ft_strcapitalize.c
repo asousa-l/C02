@@ -14,76 +14,26 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-void	transform(char *c, bool up)
-{
-	if (!up)
-	{
-		if (*c >= 'A' && *c <= 'Z')
-		{
-			*c = *c + 32;
-		}
-	}
-	else
-	{
-		if (*c >= 'a' && *c <= 'z')
-		{
-		*c = *c - 32;
-		}
-	}
-}
-
-bool	alpha(char c)
-{
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
-}
-
-bool	nbr(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-void	decision(char *a, bool *in, bool *skip)
-{
-	bool	f;
-
-	f = false;
-	if (!*in)
-	{
-		if (nbr(*a))
-			*skip = true;
-		else if (alpha(*a) && !*skip)
-		{
-			*in = true;
-			f = true;
-		}
-	}
-	transform(a, false);
-	if (*in)
-		transform(a, f);
-}
-
 char	*ft_strcapitalize(char *str)
 {
-	int		ind;
-	char	*a;
-	bool	in;
-	bool	skip;
+	int		i;
+	int	up;
 
-	ind = 0;
-	in = false;
-	skip = false;
-	while (true)
+	i = 0;
+	up = 1;
+	while (str[i] != '\0')
 	{
-		a = &str[ind];
-		if (*a == '\0')
-			break ;
-		decision(a, &in, &skip);
-		if (!(alpha(*a) || alpha(*a)))
+		if ((str[i] >= 'a' && str[i] < 'z') || (str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 0 && str[i] <= '9'))
 		{
-			in = false;
-			skip = false;
+			if (up && (str[i] >= 'a' && str[i] < 'z'))
+				str[i] = (str[i] - 32);
+			else if (!up && (str[i] >= 'a' && str[i] < 'z'))
+				str[i] = (str[i] + 32);
+			up = 0;
 		}
-		ind++;
+		else
+			upper = 1;
+		i++;
 	}
 	return (str);
 }
