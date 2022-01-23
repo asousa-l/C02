@@ -12,85 +12,99 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void	ft_putchar(char c, int size)
 {
-	write(1, &c, 1);
-}
+	int	i;
 
-void	hex_1(unsigned long int n)
-{
-	char	*hex;
-
-	hex = "0123456789abcdef";
-	ft_putchar(hex[n / 16]);
-	ft_putchar(hex[n / 16]);
-}
-
-void	hex_2(unsigned char *str, unsigned int x)
-{
-	unsigned int	a;
-	char			*hex;
-
-	a = 0;
-	hex = "0123456789abcdef";
-	while (a < 16 && str[a + x])
+	i = 0;
+	while (i < size)
 	{
-		ft_putchar(hex[str[a + x] / 16]);
-		ft_putchar(hex[str[a + x] % 16]);
-		if (a % 2 == 1)
-			write(1, " ", 1);
-		a++;
-	}
-	while (a <= 16)
-	{
-		if (a % 2 == 0)
-			write(1, "  ", 2);
-		else
-			write(1, "  ", 3);
-		a++;
+		write(1, &c, 1);
+		i++;
 	}
 }
 
-void	str(unsigned char *str, unsigned int x)
+void	ft_get_hex(unsigned long long nb, int prev)
 {
-	unsigned int	a;
+	char	*base;
 
-	a = 0;
-	while (a < 16 && str[a + x])
+	base = "0123456789abcdef";
+	if (nb < 16 && prev == 1)
+		ft_putchar('0', 1);
+	if (nb >= 16)
 	{
-		if (str[a + x] < 32 || str[a + x] > 126)
+		ft_get_hex(nb / 16, 0);
+		ft_get_hex(nb % 16, 0);
+	}
+	else
+	{
+		ft_putchar(base[nb], 1);
+	}
+}
+
+void	ft_print_addr(unsigned long long addr)
+{
+	unsigned long long	tmp;
+	int					i;
+
+	tmp = addr;
+	i = 1;
+	while (i++ < 16)
+	{
+		if (tmp < 16)
+			ft_putchar('0', 1);
+		tmp /= 16;
+	}
+	ft_get_hex(addr, 0);
+}
+
+void	ft_print_data(unsigned char *c, int size)
+{
+	int		i;
+
+	i = -1;
+	while (i++ < 16)
+	{
+		if (i % 2 == 0)
+			ft_putchar(' ', 1);
+		if (i < size)
 		{
-			ft_putchar('.');
-			a++;
+			ft_get_hex((unsigned long long)*(c + i), 1);
 		}
-		else
+		else if (i != 16)
 		{
-			ft_putchar(str[a + x]);
-			a++;
+			ft_putchar(' ', 2);
 		}
 	}
-	ft_putchar('\n');
+	i = -1;
+	while (i++ < size - 1)
+	{
+		if (*(c + i) <= 31 || *(c + i) >= 127)
+			ft_putchar('.', 1);
+		else
+			ft_putchar(*(c + i), 1);
+	}
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	unsigned int	a;
-	int				b;
+	unsigned int	i;
+	unsigned char	*c;
+	unsigned int	sendsize;
 
-	if (size == 0)
-		return (0);
-	a = 0;
-	while (a < size)
+	i = 0;
+	c = addr;
+	while (i * 16 < size)
 	{
-		b = 8;
-		while (--b >= 0)
-			hex_1((unsigned long int)(addr + a) >> b * 8 & 0xff);
-		write(1, ": ", 2);
-		if (a % 16 == 0)
-			hex_2((unsigned char *)addr, a);
-		if (a % 16 == 0)
-			str((unsigned char *)addr, a);
-		a += 16;
+		if (i < size / 16)
+			sendsize = 16;
+		else
+			sendsize = size % 16;
+		ft_print_addr((unsigned long long)c + (i * 16));
+		ft_putchar(':', 1);
+		ft_print_data(c + (i * 16), sendsize);
+		ft_putchar('\n', 1);
+		i++;
 	}
 	return (addr);
 }
